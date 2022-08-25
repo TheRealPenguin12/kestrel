@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 from lexer import tokens
- 
+
 def p_expression_plus(p):
     'expression : expression PLUS term'
     p[0] = p[1] + p[3]
@@ -29,9 +29,12 @@ def p_term_print(p):
     'term : PRINT term'
     print(p[2])
 
-def p_term_string(p):
-    'term : QUOTE term QUOTE'
-    p[0] = p[2]
+def p_term_input(p):
+    'term : INPUT term'
+    p[0] = input(p[2])
+
+def p_term_paren(p):
+    'term : LPAREN term RPAREN'
 
 def p_factor_num(p):
     'factor : NUMBER'
@@ -40,15 +43,12 @@ def p_factor_num(p):
 def p_factor_expr(p):
     'factor : LPAREN expression RPAREN'
     p[0] = p[2]
- 
+
 def p_error(p):
     print("Syntax error in input")
 
 parser = yacc.yacc()
 
 while True:
-    try:
-        s = input('Kestrel -> ')
-    except EOFError:
-        break
+    s = input('Kestrel -> ')
     result = parser.parse(s)

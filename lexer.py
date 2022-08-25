@@ -10,7 +10,7 @@ tokens = (
     'PRINT',
     'LPAREN',
     'RPAREN',
-    'QUOTE',
+    'INPUT',
 )
 t_PLUS    = r'\+'
 t_MINUS   = r'-'
@@ -19,7 +19,8 @@ t_DIVIDE  = r'/'
 t_PRINT = r'print'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-QUOTE = r'"'
+t_INPUT = r'input'
+t_ignore  = ' \t'
 
 def t_NUMBER(t):
     r'\d+'
@@ -33,8 +34,6 @@ def t_COMMENT(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
-
-t_ignore  = ' \t'
 
 def t_error(t):
     t.lexer.skip(1)

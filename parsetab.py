@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'DIVIDE LPAREN MINUS NUMBER PLUS PRINT QUOTE RPAREN TIMESexpression : expression PLUS termexpression : expression MINUS termexpression : termterm : term TIMES factorterm : term DIVIDE factorterm : factorterm : PRINT termterm : QUOTE term QUOTEfactor : NUMBERfactor : LPAREN expression RPAREN'
+_lr_signature = 'DIVIDE INPUT LPAREN MINUS NUMBER PLUS PRINT RPAREN TIMESexpression : expression PLUS termexpression : expression MINUS termexpression : termterm : term TIMES factorterm : term DIVIDE factorterm : factorterm : PRINT termterm : INPUT termterm : LPAREN term RPARENfactor : NUMBERfactor : LPAREN expression RPAREN'
     
-_lr_action_items = {'PRINT':([0,4,5,7,8,9,],[4,4,4,4,4,4,]),'QUOTE':([0,3,4,5,6,7,8,9,12,13,17,18,19,20,],[5,-6,5,5,-9,5,5,5,-7,19,-4,-5,-8,-10,]),'NUMBER':([0,4,5,7,8,9,10,11,],[6,6,6,6,6,6,6,6,]),'LPAREN':([0,4,5,7,8,9,10,11,],[7,7,7,7,7,7,7,7,]),'$end':([1,2,3,6,12,15,16,17,18,19,20,],[0,-3,-6,-9,-7,-1,-2,-4,-5,-8,-10,]),'PLUS':([1,2,3,6,12,14,15,16,17,18,19,20,],[8,-3,-6,-9,-7,8,-1,-2,-4,-5,-8,-10,]),'MINUS':([1,2,3,6,12,14,15,16,17,18,19,20,],[9,-3,-6,-9,-7,9,-1,-2,-4,-5,-8,-10,]),'RPAREN':([2,3,6,12,14,15,16,17,18,19,20,],[-3,-6,-9,-7,20,-1,-2,-4,-5,-8,-10,]),'TIMES':([2,3,6,12,13,15,16,17,18,19,20,],[10,-6,-9,10,10,10,10,-4,-5,-8,-10,]),'DIVIDE':([2,3,6,12,13,15,16,17,18,19,20,],[11,-6,-9,11,11,11,11,-4,-5,-8,-10,]),}
+_lr_action_items = {'PRINT':([0,4,5,6,8,9,19,],[4,4,4,4,4,4,4,]),'INPUT':([0,4,5,6,8,9,19,],[5,5,5,5,5,5,5,]),'LPAREN':([0,4,5,6,8,9,10,11,19,],[6,6,6,6,6,6,19,19,6,]),'NUMBER':([0,4,5,6,8,9,10,11,19,],[7,7,7,7,7,7,7,7,7,]),'$end':([1,2,3,7,12,13,16,17,18,20,21,22,],[0,-3,-6,-10,-7,-8,-1,-2,-4,-5,-9,-11,]),'PLUS':([1,2,3,7,12,13,14,15,16,17,18,20,21,22,],[8,-3,-6,-10,-7,-8,-3,8,-1,-2,-4,-5,-9,-11,]),'MINUS':([1,2,3,7,12,13,14,15,16,17,18,20,21,22,],[9,-3,-6,-10,-7,-8,-3,9,-1,-2,-4,-5,-9,-11,]),'RPAREN':([2,3,7,12,13,14,15,16,17,18,20,21,22,],[-3,-6,-10,-7,-8,21,22,-1,-2,-4,-5,-9,-11,]),'TIMES':([2,3,7,12,13,14,16,17,18,20,21,22,],[10,-6,-10,10,10,10,10,10,-4,-5,-9,-11,]),'DIVIDE':([2,3,7,12,13,14,16,17,18,20,21,22,],[11,-6,-10,11,11,11,11,11,-4,-5,-9,-11,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,7,],[1,14,]),'term':([0,4,5,7,8,9,],[2,12,13,2,15,16,]),'factor':([0,4,5,7,8,9,10,11,],[3,3,3,3,3,3,17,18,]),}
+_lr_goto_items = {'expression':([0,6,19,],[1,15,15,]),'term':([0,4,5,6,8,9,19,],[2,12,13,14,16,17,2,]),'factor':([0,4,5,6,8,9,10,11,19,],[3,3,3,3,3,3,18,20,3,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -34,7 +34,8 @@ _lr_productions = [
   ('term -> term DIVIDE factor','term',3,'p_term_div','parser.py',21),
   ('term -> factor','term',1,'p_term_factor','parser.py',25),
   ('term -> PRINT term','term',2,'p_term_print','parser.py',29),
-  ('term -> QUOTE term QUOTE','term',3,'p_term_string','parser.py',33),
-  ('factor -> NUMBER','factor',1,'p_factor_num','parser.py',37),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','parser.py',41),
+  ('term -> INPUT term','term',2,'p_term_input','parser.py',33),
+  ('term -> LPAREN term RPAREN','term',3,'p_term_paren','parser.py',37),
+  ('factor -> NUMBER','factor',1,'p_factor_num','parser.py',40),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','parser.py',44),
 ]
