@@ -11,7 +11,7 @@ Print something to screen. Examples:
 - `print 0`
 - `print (4 * 6 + 8)`
 
-:lightbulb: When using print with expressions, use parentheses
+:bulb: When using print with expressions, use parentheses
 
 ### `input`
 
@@ -26,5 +26,5 @@ Do math with kestrel. Examples:
 - `(8 * 8) / (8 * 8)`
 - `6 + 5 * 3 - 7 / 2`
 
-:lighbulb: To print to screen, use `print`.
+:bulb: To print to screen, use `print`.
 
