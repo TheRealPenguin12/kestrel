@@ -1,0 +1,808 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> expression + term
+Rule 2     expression -> expression - term
+Rule 3     factor -> factor EQ term
+Rule 4     factor -> factor NEQ term
+Rule 5     factor -> factor > term
+Rule 6     factor -> factor < term
+Rule 7     expression -> term
+Rule 8     term -> term * factor
+Rule 9     term -> term / factor
+Rule 10    term -> STRING
+Rule 11    term -> PRINT term
+Rule 12    term -> INPUT term
+Rule 13    term -> factor
+Rule 14    factor -> NUMBER
+Rule 15    factor -> LPAREN expression RPAREN
+Rule 16    term -> term LPAREN expression RPAREN
+
+Terminals, with rules where they appear
+
+*                    : 8
++                    : 1
+-                    : 2
+/                    : 9
+<                    : 6
+>                    : 5
+EQ                   : 3
+INPUT                : 12
+LPAREN               : 15 16
+NEQ                  : 4
+NUMBER               : 14
+PRINT                : 11
+RPAREN               : 15 16
+STRING               : 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 2 15 16 0
+factor               : 3 4 5 6 8 9 13
+term                 : 1 2 3 4 5 6 7 8 9 11 12 16
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . expression + term
+    (2) expression -> . expression - term
+    (7) expression -> . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    expression                     shift and go to state 1
+    term                           shift and go to state 2
+    factor                         shift and go to state 3
+
+state 1
+
+    (0) S' -> expression .
+    (1) expression -> expression . + term
+    (2) expression -> expression . - term
+
+    +               shift and go to state 9
+    -               shift and go to state 10
+
+
+state 2
+
+    (7) expression -> term .
+    (8) term -> term . * factor
+    (9) term -> term . / factor
+    (16) term -> term . LPAREN expression RPAREN
+
+    +               reduce using rule 7 (expression -> term .)
+    -               reduce using rule 7 (expression -> term .)
+    $end            reduce using rule 7 (expression -> term .)
+    RPAREN          reduce using rule 7 (expression -> term .)
+    *               shift and go to state 11
+    /               shift and go to state 12
+    LPAREN          shift and go to state 13
+
+
+state 3
+
+    (13) term -> factor .
+    (3) factor -> factor . EQ term
+    (4) factor -> factor . NEQ term
+    (5) factor -> factor . > term
+    (6) factor -> factor . < term
+
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for > resolved as shift
+  ! shift/reduce conflict for < resolved as shift
+    *               reduce using rule 13 (term -> factor .)
+    /               reduce using rule 13 (term -> factor .)
+    LPAREN          reduce using rule 13 (term -> factor .)
+    +               reduce using rule 13 (term -> factor .)
+    -               reduce using rule 13 (term -> factor .)
+    $end            reduce using rule 13 (term -> factor .)
+    RPAREN          reduce using rule 13 (term -> factor .)
+    EQ              shift and go to state 14
+    NEQ             shift and go to state 15
+    >               shift and go to state 16
+    <               shift and go to state 17
+
+  ! EQ              [ reduce using rule 13 (term -> factor .) ]
+  ! NEQ             [ reduce using rule 13 (term -> factor .) ]
+  ! >               [ reduce using rule 13 (term -> factor .) ]
+  ! <               [ reduce using rule 13 (term -> factor .) ]
+
+
+state 4
+
+    (10) term -> STRING .
+
+    *               reduce using rule 10 (term -> STRING .)
+    /               reduce using rule 10 (term -> STRING .)
+    LPAREN          reduce using rule 10 (term -> STRING .)
+    +               reduce using rule 10 (term -> STRING .)
+    -               reduce using rule 10 (term -> STRING .)
+    $end            reduce using rule 10 (term -> STRING .)
+    RPAREN          reduce using rule 10 (term -> STRING .)
+    EQ              reduce using rule 10 (term -> STRING .)
+    NEQ             reduce using rule 10 (term -> STRING .)
+    >               reduce using rule 10 (term -> STRING .)
+    <               reduce using rule 10 (term -> STRING .)
+
+
+state 5
+
+    (11) term -> PRINT . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    term                           shift and go to state 18
+    factor                         shift and go to state 3
+
+state 6
+
+    (12) term -> INPUT . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    term                           shift and go to state 19
+    factor                         shift and go to state 3
+
+state 7
+
+    (15) factor -> LPAREN . expression RPAREN
+    (1) expression -> . expression + term
+    (2) expression -> . expression - term
+    (7) expression -> . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    expression                     shift and go to state 20
+    term                           shift and go to state 2
+    factor                         shift and go to state 3
+
+state 8
+
+    (14) factor -> NUMBER .
+
+    EQ              reduce using rule 14 (factor -> NUMBER .)
+    NEQ             reduce using rule 14 (factor -> NUMBER .)
+    >               reduce using rule 14 (factor -> NUMBER .)
+    <               reduce using rule 14 (factor -> NUMBER .)
+    *               reduce using rule 14 (factor -> NUMBER .)
+    /               reduce using rule 14 (factor -> NUMBER .)
+    LPAREN          reduce using rule 14 (factor -> NUMBER .)
+    +               reduce using rule 14 (factor -> NUMBER .)
+    -               reduce using rule 14 (factor -> NUMBER .)
+    $end            reduce using rule 14 (factor -> NUMBER .)
+    RPAREN          reduce using rule 14 (factor -> NUMBER .)
+
+
+state 9
+
+    (1) expression -> expression + . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    term                           shift and go to state 21
+    factor                         shift and go to state 3
+
+state 10
+
+    (2) expression -> expression - . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    term                           shift and go to state 22
+    factor                         shift and go to state 3
+
+state 11
+
+    (8) term -> term * . factor
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    factor                         shift and go to state 23
+
+state 12
+
+    (9) term -> term / . factor
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    factor                         shift and go to state 24
+
+state 13
+
+    (16) term -> term LPAREN . expression RPAREN
+    (1) expression -> . expression + term
+    (2) expression -> . expression - term
+    (7) expression -> . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    term                           shift and go to state 2
+    expression                     shift and go to state 25
+    factor                         shift and go to state 3
+
+state 14
+
+    (3) factor -> factor EQ . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    factor                         shift and go to state 3
+    term                           shift and go to state 26
+
+state 15
+
+    (4) factor -> factor NEQ . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    factor                         shift and go to state 3
+    term                           shift and go to state 27
+
+state 16
+
+    (5) factor -> factor > . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    factor                         shift and go to state 3
+    term                           shift and go to state 28
+
+state 17
+
+    (6) factor -> factor < . term
+    (8) term -> . term * factor
+    (9) term -> . term / factor
+    (10) term -> . STRING
+    (11) term -> . PRINT term
+    (12) term -> . INPUT term
+    (13) term -> . factor
+    (16) term -> . term LPAREN expression RPAREN
+    (3) factor -> . factor EQ term
+    (4) factor -> . factor NEQ term
+    (5) factor -> . factor > term
+    (6) factor -> . factor < term
+    (14) factor -> . NUMBER
+    (15) factor -> . LPAREN expression RPAREN
+
+    STRING          shift and go to state 4
+    PRINT           shift and go to state 5
+    INPUT           shift and go to state 6
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 7
+
+    factor                         shift and go to state 3
+    term                           shift and go to state 29
+
+state 18
+
+    (11) term -> PRINT term .
+    (8) term -> term . * factor
+    (9) term -> term . / factor
+    (16) term -> term . LPAREN expression RPAREN
+
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    +               reduce using rule 11 (term -> PRINT term .)
+    -               reduce using rule 11 (term -> PRINT term .)
+    $end            reduce using rule 11 (term -> PRINT term .)
+    RPAREN          reduce using rule 11 (term -> PRINT term .)
+    EQ              reduce using rule 11 (term -> PRINT term .)
+    NEQ             reduce using rule 11 (term -> PRINT term .)
+    >               reduce using rule 11 (term -> PRINT term .)
+    <               reduce using rule 11 (term -> PRINT term .)
+    *               shift and go to state 11
+    /               shift and go to state 12
+    LPAREN          shift and go to state 13
+
+  ! *               [ reduce using rule 11 (term -> PRINT term .) ]
+  ! /               [ reduce using rule 11 (term -> PRINT term .) ]
+  ! LPAREN          [ reduce using rule 11 (term -> PRINT term .) ]
+
+
+state 19
+
+    (12) term -> INPUT term .
+    (8) term -> term . * factor
+    (9) term -> term . / factor
+    (16) term -> term . LPAREN expression RPAREN
+
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    +               reduce using rule 12 (term -> INPUT term .)
+    -               reduce using rule 12 (term -> INPUT term .)
+    $end            reduce using rule 12 (term -> INPUT term .)
+    RPAREN          reduce using rule 12 (term -> INPUT term .)
+    EQ              reduce using rule 12 (term -> INPUT term .)
+    NEQ             reduce using rule 12 (term -> INPUT term .)
+    >               reduce using rule 12 (term -> INPUT term .)
+    <               reduce using rule 12 (term -> INPUT term .)
+    *               shift and go to state 11
+    /               shift and go to state 12
+    LPAREN          shift and go to state 13
+
+  ! *               [ reduce using rule 12 (term -> INPUT term .) ]
+  ! /               [ reduce using rule 12 (term -> INPUT term .) ]
+  ! LPAREN          [ reduce using rule 12 (term -> INPUT term .) ]
+
+
+state 20
+
+    (15) factor -> LPAREN expression . RPAREN
+    (1) expression -> expression . + term
+    (2) expression -> expression . - term
+
+    RPAREN          shift and go to state 30
+    +               shift and go to state 9
+    -               shift and go to state 10
+
+
+state 21
+
+    (1) expression -> expression + term .
+    (8) term -> term . * factor
+    (9) term -> term . / factor
+    (16) term -> term . LPAREN expression RPAREN
+
+    +               reduce using rule 1 (expression -> expression + term .)
+    -               reduce using rule 1 (expression -> expression + term .)
+    $end            reduce using rule 1 (expression -> expression + term .)
+    RPAREN          reduce using rule 1 (expression -> expression + term .)
+    *               shift and go to state 11
+    /               shift and go to state 12
+    LPAREN          shift and go to state 13
+
+
+state 22
+
+    (2) expression -> expression - term .
+    (8) term -> term . * factor
+    (9) term -> term . / factor
+    (16) term -> term . LPAREN expression RPAREN
+
+    +               reduce using rule 2 (expression -> expression - term .)
+    -               reduce using rule 2 (expression -> expression - term .)
+    $end            reduce using rule 2 (expression -> expression - term .)
+    RPAREN          reduce using rule 2 (expression -> expression - term .)
+    *               shift and go to state 11
+    /               shift and go to state 12
+    LPAREN          shift and go to state 13
+
+
+state 23
+
+    (8) term -> term * factor .
+    (3) factor -> factor . EQ term
+    (4) factor -> factor . NEQ term
+    (5) factor -> factor . > term
+    (6) factor -> factor . < term
+
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for > resolved as shift
+  ! shift/reduce conflict for < resolved as shift
+    *               reduce using rule 8 (term -> term * factor .)
+    /               reduce using rule 8 (term -> term * factor .)
+    LPAREN          reduce using rule 8 (term -> term * factor .)
+    +               reduce using rule 8 (term -> term * factor .)
+    -               reduce using rule 8 (term -> term * factor .)
+    $end            reduce using rule 8 (term -> term * factor .)
+    RPAREN          reduce using rule 8 (term -> term * factor .)
+    EQ              shift and go to state 14
+    NEQ             shift and go to state 15
+    >               shift and go to state 16
+    <               shift and go to state 17
+
+  ! EQ              [ reduce using rule 8 (term -> term * factor .) ]
+  ! NEQ             [ reduce using rule 8 (term -> term * factor .) ]
+  ! >               [ reduce using rule 8 (term -> term * factor .) ]
+  ! <               [ reduce using rule 8 (term -> term * factor .) ]
+
+
+state 24
+
+    (9) term -> term / factor .
+    (3) factor -> factor . EQ term
+    (4) factor -> factor . NEQ term
+    (5) factor -> factor . > term
+    (6) factor -> factor . < term
+
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NEQ resolved as shift
+  ! shift/reduce conflict for > resolved as shift
+  ! shift/reduce conflict for < resolved as shift
+    *               reduce using rule 9 (term -> term / factor .)
+    /               reduce using rule 9 (term -> term / factor .)
+    LPAREN          reduce using rule 9 (term -> term / factor .)
+    +               reduce using rule 9 (term -> term / factor .)
+    -               reduce using rule 9 (term -> term / factor .)
+    $end            reduce using rule 9 (term -> term / factor .)
+    RPAREN          reduce using rule 9 (term -> term / factor .)
+    EQ              shift and go to state 14
+    NEQ             shift and go to state 15
+    >               shift and go to state 16
+    <               shift and go to state 17
+
+  ! EQ              [ reduce using rule 9 (term -> term / factor .) ]
+  ! NEQ             [ reduce using rule 9 (term -> term / factor .) ]
+  ! >               [ reduce using rule 9 (term -> term / factor .) ]
+  ! <               [ reduce using rule 9 (term -> term / factor .) ]
+
+
+state 25
+
+    (16) term -> term LPAREN expression . RPAREN
+    (1) expression -> expression . + term
+    (2) expression -> expression . - term
+
+    RPAREN          shift and go to state 31
+    +               shift and go to state 9
+    -               shift and go to state 10
+
+
+state 26
+
+    (3) factor -> factor EQ term .
+    (8) term -> term . * factor
+    (9) term -> term . / factor
+    (16) term -> term . LPAREN expression RPAREN
+
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    EQ              reduce using rule 3 (factor -> factor EQ term .)
+    NEQ             reduce using rule 3 (factor -> factor EQ term .)
+    >               reduce using rule 3 (factor -> factor EQ term .)
+    <               reduce using rule 3 (factor -> factor EQ term .)
+    +               reduce using rule 3 (factor -> factor EQ term .)
+    -               reduce using rule 3 (factor -> factor EQ term .)
+    $end            reduce using rule 3 (factor -> factor EQ term .)
+    RPAREN          reduce using rule 3 (factor -> factor EQ term .)
+    *               shift and go to state 11
+    /               shift and go to state 12
+    LPAREN          shift and go to state 13
+
+  ! *               [ reduce using rule 3 (factor -> factor EQ term .) ]
+  ! /               [ reduce using rule 3 (factor -> factor EQ term .) ]
+  ! LPAREN          [ reduce using rule 3 (factor -> factor EQ term .) ]
+
+
+state 27
+
+    (4) factor -> factor NEQ term .
+    (8) term -> term . * factor
+    (9) term -> term . / factor
+    (16) term -> term . LPAREN expression RPAREN
+
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    EQ              reduce using rule 4 (factor -> factor NEQ term .)
+    NEQ             reduce using rule 4 (factor -> factor NEQ term .)
+    >               reduce using rule 4 (factor -> factor NEQ term .)
+    <               reduce using rule 4 (factor -> factor NEQ term .)
+    +               reduce using rule 4 (factor -> factor NEQ term .)
+    -               reduce using rule 4 (factor -> factor NEQ term .)
+    $end            reduce using rule 4 (factor -> factor NEQ term .)
+    RPAREN          reduce using rule 4 (factor -> factor NEQ term .)
+    *               shift and go to state 11
+    /               shift and go to state 12
+    LPAREN          shift and go to state 13
+
+  ! *               [ reduce using rule 4 (factor -> factor NEQ term .) ]
+  ! /               [ reduce using rule 4 (factor -> factor NEQ term .) ]
+  ! LPAREN          [ reduce using rule 4 (factor -> factor NEQ term .) ]
+
+
+state 28
+
+    (5) factor -> factor > term .
+    (8) term -> term . * factor
+    (9) term -> term . / factor
+    (16) term -> term . LPAREN expression RPAREN
+
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    EQ              reduce using rule 5 (factor -> factor > term .)
+    NEQ             reduce using rule 5 (factor -> factor > term .)
+    >               reduce using rule 5 (factor -> factor > term .)
+    <               reduce using rule 5 (factor -> factor > term .)
+    +               reduce using rule 5 (factor -> factor > term .)
+    -               reduce using rule 5 (factor -> factor > term .)
+    $end            reduce using rule 5 (factor -> factor > term .)
+    RPAREN          reduce using rule 5 (factor -> factor > term .)
+    *               shift and go to state 11
+    /               shift and go to state 12
+    LPAREN          shift and go to state 13
+
+  ! *               [ reduce using rule 5 (factor -> factor > term .) ]
+  ! /               [ reduce using rule 5 (factor -> factor > term .) ]
+  ! LPAREN          [ reduce using rule 5 (factor -> factor > term .) ]
+
+
+state 29
+
+    (6) factor -> factor < term .
+    (8) term -> term . * factor
+    (9) term -> term . / factor
+    (16) term -> term . LPAREN expression RPAREN
+
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    EQ              reduce using rule 6 (factor -> factor < term .)
+    NEQ             reduce using rule 6 (factor -> factor < term .)
+    >               reduce using rule 6 (factor -> factor < term .)
+    <               reduce using rule 6 (factor -> factor < term .)
+    +               reduce using rule 6 (factor -> factor < term .)
+    -               reduce using rule 6 (factor -> factor < term .)
+    $end            reduce using rule 6 (factor -> factor < term .)
+    RPAREN          reduce using rule 6 (factor -> factor < term .)
+    *               shift and go to state 11
+    /               shift and go to state 12
+    LPAREN          shift and go to state 13
+
+  ! *               [ reduce using rule 6 (factor -> factor < term .) ]
+  ! /               [ reduce using rule 6 (factor -> factor < term .) ]
+  ! LPAREN          [ reduce using rule 6 (factor -> factor < term .) ]
+
+
+state 30
+
+    (15) factor -> LPAREN expression RPAREN .
+
+    EQ              reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+    NEQ             reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+    >               reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+    <               reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+    *               reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+    /               reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+    LPAREN          reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+    +               reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+    -               reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+    $end            reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 15 (factor -> LPAREN expression RPAREN .)
+
+
+state 31
+
+    (16) term -> term LPAREN expression RPAREN .
+
+    *               reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+    /               reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+    LPAREN          reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+    +               reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+    -               reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+    $end            reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+    EQ              reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+    NEQ             reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+    >               reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+    <               reduce using rule 16 (term -> term LPAREN expression RPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for EQ in state 3 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 3 resolved as shift
+WARNING: shift/reduce conflict for > in state 3 resolved as shift
+WARNING: shift/reduce conflict for < in state 3 resolved as shift
+WARNING: shift/reduce conflict for * in state 18 resolved as shift
+WARNING: shift/reduce conflict for / in state 18 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 18 resolved as shift
+WARNING: shift/reduce conflict for * in state 19 resolved as shift
+WARNING: shift/reduce conflict for / in state 19 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 19 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 23 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 23 resolved as shift
+WARNING: shift/reduce conflict for > in state 23 resolved as shift
+WARNING: shift/reduce conflict for < in state 23 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 24 resolved as shift
+WARNING: shift/reduce conflict for NEQ in state 24 resolved as shift
+WARNING: shift/reduce conflict for > in state 24 resolved as shift
+WARNING: shift/reduce conflict for < in state 24 resolved as shift
+WARNING: shift/reduce conflict for * in state 26 resolved as shift
+WARNING: shift/reduce conflict for / in state 26 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 26 resolved as shift
+WARNING: shift/reduce conflict for * in state 27 resolved as shift
+WARNING: shift/reduce conflict for / in state 27 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 27 resolved as shift
+WARNING: shift/reduce conflict for * in state 28 resolved as shift
+WARNING: shift/reduce conflict for / in state 28 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 28 resolved as shift
+WARNING: shift/reduce conflict for * in state 29 resolved as shift
+WARNING: shift/reduce conflict for / in state 29 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 29 resolved as shift
