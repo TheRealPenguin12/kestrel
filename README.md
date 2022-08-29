@@ -9,15 +9,16 @@ Kestrel is a programming language with a simple syntax, designed for beginners w
 Commenting is a way to leave notes to yourself. The `lexer` will ignore comments.
 
 ```
-% This is a comment!
-% This is also a comment!
+& This is a comment!
+& This is also a comment!
 ```
+
+_Commenting is currently __under development__._
+__Bug discovered by [@TheRealPenguin](https://github.com/TheRealPenguin12)__
 
 ### Output
 
 #### Print
-
-Print is the simplest output method in `kestrel`.
 
 ```
 print: "Hello, World"
@@ -27,8 +28,6 @@ print: "Hello, World"
 
 #### Input
 
-Input is the simplest input method in `kestrel`.
-
 ```
 input: "What's your name? "
 ```
@@ -36,8 +35,6 @@ input: "What's your name? "
 ### Math
 
 #### Addition
-
-Addion is very simple, but important in the math syntax.
 
 ```
 print: 867485 + 756
@@ -52,13 +49,9 @@ print: 7 - 5
 ```
 #### Multiplication
 
-Ah, multiplication. Of course, we have to have this in our math syntax!
-
 ```
 print: 67 * 372
 ```
-
-You can also call multiplication a different way.
 
 ```
 print: 67(372)
@@ -66,8 +59,46 @@ print: 67(372)
 
 #### Division
 
-Division can be easily executed just as simply as the other operations.
-
 ```
 print:  6 / 2
+```
+
+### Other
+
+#### Waiting
+
+```
+wait: 2
+```
+
+#### Exiting
+
+```
+exit
+```
+
+### Comparisons
+
+### Greater than
+
+```
+print: 6 > 4
+```
+
+### Less than
+
+```
+print: 4 < 6
+```
+
+### Equal to
+
+```
+print: 6 == 6
+```
+
+### Not equal to
+
+```
+print: 6 != 7
 ```
