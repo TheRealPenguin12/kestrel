@@ -42,8 +42,6 @@ print: 867485 + 756
 
 #### Subtraction
 
-Subtraction.
-
 ```
 print: 7 - 5
 ```
