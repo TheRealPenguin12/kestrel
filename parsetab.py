@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'EQ INPUT LPAREN NEQ NUMBER PRINT RPAREN STRINGexpression : expression "+" termexpression : expression "-" termfactor : factor EQ termfactor : factor NEQ termfactor : factor ">" termfactor : factor "<" termexpression : termterm : term "*" factorterm : term "/" factorterm : STRINGterm : PRINT termterm : INPUT termterm : factorfactor : NUMBERfactor : LPAREN expression RPARENterm : term LPAREN expression RPAREN'
+_lr_signature = 'EQ INPUT LPAREN NEQ NUMBER PRINT RPAREN STRING WAITexpression : expression "+" termexpression : expression "-" termfactor : factor EQ termfactor : factor NEQ termfactor : factor ">" termfactor : factor "<" termexpression : termterm : term "*" factorterm : term "/" factorterm : STRINGterm : PRINT termterm : INPUT termterm : WAIT termterm : factorfactor : NUMBERfactor : LPAREN expression RPARENterm : term LPAREN expression RPAREN'
     
-_lr_action_items = {'STRING':([0,5,6,7,9,10,13,14,15,16,17,],[4,4,4,4,4,4,4,4,4,4,4,]),'PRINT':([0,5,6,7,9,10,13,14,15,16,17,],[5,5,5,5,5,5,5,5,5,5,5,]),'INPUT':([0,5,6,7,9,10,13,14,15,16,17,],[6,6,6,6,6,6,6,6,6,6,6,]),'NUMBER':([0,5,6,7,9,10,11,12,13,14,15,16,17,],[8,8,8,8,8,8,8,8,8,8,8,8,8,]),'LPAREN':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21,22,23,24,26,27,28,29,30,31,],[7,13,-13,-10,7,7,7,-14,7,7,7,7,7,7,7,7,7,13,13,13,13,-8,-9,13,13,13,13,-15,-16,]),'$end':([1,2,3,4,8,18,19,21,22,23,24,26,27,28,29,30,31,],[0,-7,-13,-10,-14,-11,-12,-1,-2,-8,-9,-3,-4,-5,-6,-15,-16,]),'+':([1,2,3,4,8,18,19,20,21,22,23,24,25,26,27,28,29,30,31,],[9,-7,-13,-10,-14,-11,-12,9,-1,-2,-8,-9,9,-3,-4,-5,-6,-15,-16,]),'-':([1,2,3,4,8,18,19,20,21,22,23,24,25,26,27,28,29,30,31,],[10,-7,-13,-10,-14,-11,-12,10,-1,-2,-8,-9,10,-3,-4,-5,-6,-15,-16,]),'RPAREN':([2,3,4,8,18,19,20,21,22,23,24,25,26,27,28,29,30,31,],[-7,-13,-10,-14,-11,-12,30,-1,-2,-8,-9,31,-3,-4,-5,-6,-15,-16,]),'*':([2,3,4,8,18,19,21,22,23,24,26,27,28,29,30,31,],[11,-13,-10,-14,11,11,11,11,-8,-9,11,11,11,11,-15,-16,]),'/':([2,3,4,8,18,19,21,22,23,24,26,27,28,29,30,31,],[12,-13,-10,-14,12,12,12,12,-8,-9,12,12,12,12,-15,-16,]),'EQ':([3,4,8,18,19,23,24,26,27,28,29,30,31,],[14,-10,-14,-11,-12,14,14,-3,-4,-5,-6,-15,-16,]),'NEQ':([3,4,8,18,19,23,24,26,27,28,29,30,31,],[15,-10,-14,-11,-12,15,15,-3,-4,-5,-6,-15,-16,]),'>':([3,4,8,18,19,23,24,26,27,28,29,30,31,],[16,-10,-14,-11,-12,16,16,-3,-4,-5,-6,-15,-16,]),'<':([3,4,8,18,19,23,24,26,27,28,29,30,31,],[17,-10,-14,-11,-12,17,17,-3,-4,-5,-6,-15,-16,]),}
+_lr_action_items = {'STRING':([0,5,6,7,8,10,11,14,15,16,17,18,],[4,4,4,4,4,4,4,4,4,4,4,4,]),'PRINT':([0,5,6,7,8,10,11,14,15,16,17,18,],[5,5,5,5,5,5,5,5,5,5,5,5,]),'INPUT':([0,5,6,7,8,10,11,14,15,16,17,18,],[6,6,6,6,6,6,6,6,6,6,6,6,]),'WAIT':([0,5,6,7,8,10,11,14,15,16,17,18,],[7,7,7,7,7,7,7,7,7,7,7,7,]),'NUMBER':([0,5,6,7,8,10,11,12,13,14,15,16,17,18,],[9,9,9,9,9,9,9,9,9,9,9,9,9,9,]),'LPAREN':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,28,29,30,31,32,33,],[8,14,-14,-10,8,8,8,8,-15,8,8,8,8,8,8,8,8,8,14,14,14,14,14,-8,-9,14,14,14,14,-16,-17,]),'$end':([1,2,3,4,9,19,20,21,23,24,25,26,28,29,30,31,32,33,],[0,-7,-14,-10,-15,-11,-12,-13,-1,-2,-8,-9,-3,-4,-5,-6,-16,-17,]),'+':([1,2,3,4,9,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,],[10,-7,-14,-10,-15,-11,-12,-13,10,-1,-2,-8,-9,10,-3,-4,-5,-6,-16,-17,]),'-':([1,2,3,4,9,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,],[11,-7,-14,-10,-15,-11,-12,-13,11,-1,-2,-8,-9,11,-3,-4,-5,-6,-16,-17,]),'RPAREN':([2,3,4,9,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,],[-7,-14,-10,-15,-11,-12,-13,32,-1,-2,-8,-9,33,-3,-4,-5,-6,-16,-17,]),'*':([2,3,4,9,19,20,21,23,24,25,26,28,29,30,31,32,33,],[12,-14,-10,-15,12,12,12,12,12,-8,-9,12,12,12,12,-16,-17,]),'/':([2,3,4,9,19,20,21,23,24,25,26,28,29,30,31,32,33,],[13,-14,-10,-15,13,13,13,13,13,-8,-9,13,13,13,13,-16,-17,]),'EQ':([3,4,9,19,20,21,25,26,28,29,30,31,32,33,],[15,-10,-15,-11,-12,-13,15,15,-3,-4,-5,-6,-16,-17,]),'NEQ':([3,4,9,19,20,21,25,26,28,29,30,31,32,33,],[16,-10,-15,-11,-12,-13,16,16,-3,-4,-5,-6,-16,-17,]),'>':([3,4,9,19,20,21,25,26,28,29,30,31,32,33,],[17,-10,-15,-11,-12,-13,17,17,-3,-4,-5,-6,-16,-17,]),'<':([3,4,9,19,20,21,25,26,28,29,30,31,32,33,],[18,-10,-15,-11,-12,-13,18,18,-3,-4,-5,-6,-16,-17,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,7,13,],[1,20,25,]),'term':([0,5,6,7,9,10,13,14,15,16,17,],[2,18,19,2,21,22,2,26,27,28,29,]),'factor':([0,5,6,7,9,10,11,12,13,14,15,16,17,],[3,3,3,3,3,3,23,24,3,3,3,3,3,]),}
+_lr_goto_items = {'expression':([0,8,14,],[1,22,27,]),'term':([0,5,6,7,8,10,11,14,15,16,17,18,],[2,19,20,21,2,23,24,2,28,29,30,31,]),'factor':([0,5,6,7,8,10,11,12,13,14,15,16,17,18,],[3,3,3,3,3,3,3,25,26,3,3,3,3,3,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,20 +27,21 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> expression + term','expression',3,'p_expression_plus','parser.py',6),
-  ('expression -> expression - term','expression',3,'p_expression_minus','parser.py',10),
-  ('factor -> factor EQ term','factor',3,'p_expression_eq','parser.py',14),
-  ('factor -> factor NEQ term','factor',3,'p_expression_neq','parser.py',18),
-  ('factor -> factor > term','factor',3,'p_expression_gt','parser.py',22),
-  ('factor -> factor < term','factor',3,'p_expression_lt','parser.py',26),
-  ('expression -> term','expression',1,'p_expression_term','parser.py',30),
-  ('term -> term * factor','term',3,'p_term_times','parser.py',34),
-  ('term -> term / factor','term',3,'p_term_div','parser.py',38),
-  ('term -> STRING','term',1,'p_term_string','parser.py',42),
-  ('term -> PRINT term','term',2,'p_term_print','parser.py',46),
-  ('term -> INPUT term','term',2,'p_term_input','parser.py',50),
-  ('term -> factor','term',1,'p_term_factor','parser.py',54),
-  ('factor -> NUMBER','factor',1,'p_factor_num','parser.py',58),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','parser.py',62),
-  ('term -> term LPAREN expression RPAREN','term',4,'p_term_simpletimes','parser.py',66),
+  ('expression -> expression + term','expression',3,'p_expression_plus','parser.py',7),
+  ('expression -> expression - term','expression',3,'p_expression_minus','parser.py',11),
+  ('factor -> factor EQ term','factor',3,'p_expression_eq','parser.py',15),
+  ('factor -> factor NEQ term','factor',3,'p_expression_neq','parser.py',19),
+  ('factor -> factor > term','factor',3,'p_expression_gt','parser.py',23),
+  ('factor -> factor < term','factor',3,'p_expression_lt','parser.py',27),
+  ('expression -> term','expression',1,'p_expression_term','parser.py',31),
+  ('term -> term * factor','term',3,'p_term_times','parser.py',35),
+  ('term -> term / factor','term',3,'p_term_div','parser.py',39),
+  ('term -> STRING','term',1,'p_term_string','parser.py',46),
+  ('term -> PRINT term','term',2,'p_term_print','parser.py',50),
+  ('term -> INPUT term','term',2,'p_term_input','parser.py',54),
+  ('term -> WAIT term','term',2,'p_term_wait','parser.py',58),
+  ('term -> factor','term',1,'p_term_factor','parser.py',62),
+  ('factor -> NUMBER','factor',1,'p_factor_num','parser.py',66),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor_expr','parser.py',70),
+  ('term -> term LPAREN expression RPAREN','term',4,'p_term_simpletimes','parser.py',74),
 ]

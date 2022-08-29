@@ -10,9 +10,10 @@ tokens = (
     'NEQ',
     'STRING',
     'INPUT',
+    'WAIT',
 )
 
-literals = { '+', '-', '*', '/', '>', '<' }
+literals = { '+', '-', '*', '/', '>', '<', '^', '%', '&' }
 
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
@@ -20,22 +21,19 @@ t_PRINT = r'print:'
 t_EQ = r'=='
 t_NEQ = r'!='
 t_INPUT = r'input:'
+t_WAIT = r'wait:'
 
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)    
     return t
 
-def t_COMMENT(t):
-    r'\%.*'
-    pass
-
-def t_ENDOFFILE(t):
-    r'\<end\>'
+def t_EXIT(t):
+    r'exit'
     sys.exit()
 
-def t_STARTOFFILE(t):
-    r'\<start\>'
+def t_COMMENT(t):
+    r'\&.*'
     pass
 
 def t_STRING(t):
