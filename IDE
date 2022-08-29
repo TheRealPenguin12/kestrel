@@ -1,2 +1,7 @@
 #! /bin/sh
-python3 ide.py
+if [ -z "$1" ]
+  then
+    python3 ide.py
+else
+    python3 parsefile.py $1	
+fi

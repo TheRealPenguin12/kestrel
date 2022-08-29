@@ -1,8 +1,12 @@
 import ply.yacc as yacc
 from lexer import tokens
+import lexer
 import sys
 from colorama import *
 import time
+
+env = ""
+
 
 def p_expression_plus(p):
     'expression : expression "+" term'
@@ -49,7 +53,11 @@ def p_term_string(p):
 
 def p_term_print(p):
     'term : PRINT term'
-    print(p[2])
+    if env == "ide":
+        print(p[2], end="")
+        p[0] = ""
+    elif env == "file":
+        print(p[2])
 
 def p_term_input(p):
     'term : INPUT term'
@@ -79,6 +87,9 @@ def p_term_simpletimes(p):
     p[0] = p[1] * p[3]
 
 def p_error(p):
-    print(f"{Fore.RED}{Style.BRIGHT}Syntax error in input{Style.RESET_ALL}")
+    try:
+        print(f"{Fore.RED}{Style.BRIGHT}{p.value}:{Style.NORMAL} Syntax error on line {lexer.lexer.lineno}{Style.RESET_ALL}")
+    except AttributeError as e:
+        print(f"{Fore.RED}{Style.BRIGHT}line {lexer.lexer.lineno}:{Style.NORMAL} Syntax error{Style.RESET_ALL}")
 
 parser = yacc.yacc()
